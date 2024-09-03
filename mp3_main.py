@@ -138,7 +138,6 @@ while True:
             print('musica não encontrada')
     else:
         print('genero não encontrado')
-
     play_again = input('deseja ouvir outra musica? (s/n)\n')
     if play_again != 's'.strip().lower():
         break
