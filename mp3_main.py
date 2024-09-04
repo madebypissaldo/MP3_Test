@@ -101,6 +101,14 @@ while True:
                     musica = "1"
                 elif event.key == pygame.K_2:
                     musica = "2"
+                elif event.key == pygame.K_3:
+                    musica = "3"
+                elif event.key == pygame.K_4:
+                    musica = "4"
+                elif event.key == pygame.K_5:
+                    musica = "5"
+                elif event.key == pygame.K_6:
+                    musica = "6"
                 elif event.key == pygame.K_SPACE:
                     if music_file:
                         if pygame.mixer.music.get_busy():
