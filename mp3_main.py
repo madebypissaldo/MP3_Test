@@ -3,74 +3,139 @@ import sys
 
 pygame.init()
 
-pygame.display.set_mode((1,1))
+screen = pygame.display.set_mode((800, 600))
+
+WHITE = (255,255,255)
+BLACK = (0,0,0)
+
+font = pygame.font.SysFont('Arial', 24)
+
+menu = True
+music_menu = False
+genero = ''
+musica = ''
+music_file = ''
+
+def draw_menu():
+    screen.fill(WHITE)
+    text = font.render('Selecione o genero musical:', True, BLACK)
+    screen.blit(text, (100, 100))
+    text = font.render('1 - Drill', True, BLACK)
+    screen.blit(text, (100, 150))
+    text = font.render('2 - Corridos Tumbados', True, BLACK)
+    screen.blit(text, (100, 200))
+    text = font.render('3 - RnB', True, BLACK)
+    screen.blit(text, (100, 250))
+    text = font.render('Q - Sair', True, BLACK)
+    screen.blit(text, (50, 50))
+    pygame.display.update()
+
+def draw_music_menu():
+    screen.fill(WHITE)
+    text = font.render('Selecione uma musica:', True, BLACK)
+    screen.blit(text, (100, 100))
+    if genero == '1':
+        text = font.render('1 - Doja - Central Cee', True, BLACK)
+        screen.blit(text,(100,200))
+        text = font.render('2 - Irish Drill - AC-130', True, BLACK)
+        screen.blit(text, (100, 250))
+        text = font.render('utilize a tecla D para iniciar a musica e a tecla ESPAÇO para pausar', True, BLACK)
+        screen.blit(text, (100, 300))
+        text = font.render('Q - voltar', True, BLACK)
+        screen.blit(text, (50, 50))
+    elif genero == '2':
+        text = font.render('3 - Bizarrap Session - Peso Pluma', True, BLACK)
+        screen.blit(text, (100,200))
+        text = font.render('4 - TQM - Fuerza Regida', True, BLACK)
+        screen.blit(text, (100,250))
+        text = font.render('utilize a tecla D para iniciar a musica e a tecla ESPAÇO para pausar', True, BLACK)
+        screen.blit(text, (100, 300))
+        text = font.render('Q - voltar', True, BLACK)
+        screen.blit(text, (50, 50))
+    elif genero == "3":
+        text = font.render("5 - Ivy - Frank Ocean", True, BLACK)
+        screen.blit(text, (100, 200))
+        text = font.render("6 - After Hours - The Weeknd", True, BLACK)
+        screen.blit(text, (100, 250))
+        text = font.render('utilize a tecla D para iniciar a musica e a tecla ESPAÇO para pausar', True, BLACK)
+        screen.blit(text, (100, 300))
+        text = font.render('Q - voltar', True, BLACK)
+        screen.blit(text, (50, 50))
+    pygame.display.update()
+
+def draw_pause_menu():
+    screen.fill(WHITE)
+    text = font.render("Música pausada", True, BLACK)
+    screen.blit(text, (100, 100))
+    text = font.render("Pressione espaço para continuar", True, BLACK)
+    screen.blit(text, (100, 150))
+    pygame.display.update()
+
 
 while True:
-    genero = input('qual genero musical você deseja ouvir? \n1 - drill\n2 - corridos\n3 - RnB\n4 - Sair\n ')
-    if genero == "1":
-        musica = input('qual musica você deseja ouvir?\nD1:  Doja - Central Cee \nD2: Irish Drill - AC-130\n ')
-        if musica == 'd1'.strip().lower():
-            music_file = 'ytmp3-converter.com_320kbps-central-cee-doja-official-music-video.mp3'
-        elif musica == 'd2'.strip().lower():
-            music_file = 'ytmp3-converter.com_320kbps-irish-drill.mp3'
-        else:
-            print('musica não encontrada')
-            continue
-    elif genero == '2':
-        musica = input('qual musica você deseja ouvir?\nC1 : Bizarrap Session - Peso Pluma\n C2: TQM - Fuerza Regida\n')
-        if musica == 'c1'.strip().lower():
-            music_file = 'ytmp3-converter.com_320kbps-peso-pluma-bzrp-music-sessions-55.mp3'
-        elif musica == 'c2'.strip().lower():
-            music_file = 'ytmp3-converter.com_320kbps-fuerza-regida-tqm.mp3'
-        else:
-            print('musica não encontrada')
-            continue
-    elif genero == '3':
-        musica = input('qual musica você deseja ouvir:\nR1: Ivy - Frank Ocean \nR2: After Hours  - The Weeknd \n')
-        if musica == 'r1'.strip().lower():
-            music_file = 'ytmp3-converter.com_320kbps-frank-ocean-ivy.mp3'
-        elif musica == 'r2'.strip().lower():
-            music_file = 'ytmp3-converter.com_320kbps-the-weeknd-after-hours-audio.mp3'
-        else:
-            print('musica não encontrada')
-            continue
-    elif genero == '4':
-        print('Saindo do programa...')
-        pygame.quit()
-        sys.exit()
-    else:
-        print('genero não encontrado')
-        continue
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            pygame.quit()
+            sys.exit()
 
-    try:
-        pygame.mixer.music.load(music_file)
-        pygame.mixer.music.set_volume(1.0)
-        pygame.mixer.music.play()
-        pygame.mixer.music.set_endevent(pygame.USEREVENT + 1)
-
-        replay = True
-        while replay:
-            for event in pygame.event.get():
-                if event.type == pygame.QUIT:
-                    pygame.mixer.music.stop()
+        if event.type == pygame.KEYDOWN:
+            if menu:
+                if event.key == pygame.K_1:
+                    genero = "1"
+                    menu = False
+                    music_menu = True
+                elif event.key == pygame.K_2:
+                    genero = "2"
+                    menu = False
+                    music_menu = True
+                elif event.key == pygame.K_3:
+                    genero = "3"
+                    menu = False
+                    music_menu = True
+                elif event.key == pygame.K_q:
                     pygame.quit()
-                    sys.exit
-                elif event.type == pygame.KEYDOWN:
-                    if event.key == pygame.K_SPACE:
+                    sys.exit()
+
+            elif music_menu:
+                if event.key == pygame.K_1:
+                    musica = "1"
+                elif event.key == pygame.K_2:
+                    musica = "2"
+                elif event.key == pygame.K_SPACE:
+                    if music_file:
                         if pygame.mixer.music.get_busy():
                             pygame.mixer.music.pause()
                         else:
                             pygame.mixer.music.unpause()
-                elif event.type == pygame.USEREVENT + 1:
-                    replay = False
-            pygame.time.Clock().tick(60)
+                elif event.key == pygame.K_d:
+                    if musica == "1":
+                        music_file = "ytmp3-converter.com_320kbps-central-cee-doja-official-music-video.mp3"
+                    elif musica == "2":
+                        music_file = "ytmp3-converter.com_320kbps-irish-drill.mp3"
+                    elif musica == "3":
+                        music_file = "ytmp3-converter.com_320kbps-peso-pluma-bzrp-music-sessions-55.mp3"
+                    elif musica == "4":
+                        music_file = "ytmp3-converter.com_320kbps-fuerza-regida-tqm.mp3"
+                    elif musica == "5":
+                        music_file = "ytmp3-converter.com_320kbps-frank-ocean-ivy.mp3"
+                    elif musica == "6":
+                        music_file = "ytmp3-converter.com_320kbps-the-weeknd-after-hours-audio.mp3"
+                        
+                    pygame.mixer.music.load(music_file)
+                    pygame.mixer.music.set_volume(1.0)
+                    pygame.mixer.music.play()
+                elif event.key == pygame.K_q:
+                    music_menu = False
+                    menu = True
 
-        play_again = input('deseja ouvir outra musica? (s/n)\n')
-        if play_again != 's'.strip().lower():
-            break
+    if menu:
+        draw_menu()
+    elif music_menu:
+        draw_music_menu()
+    elif music_file:
+        if pygame.mixer.music.get_busy():
+            draw_pause_menu()
 
-    except pygame.error as e:
-        print(f'erro ao carregar a musica: {e}')
 
-pygame.quit()
-sys.exit()
+    pygame.display.update()
+    pygame.time.Clock().tick(60)
