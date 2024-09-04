@@ -3,6 +3,8 @@ import sys
 
 pygame.init()
 
+pygame.display.set_mode((1,1))
+
 while True:
     genero = input('qual genero musical você deseja ouvir? \n1 - drill\n2 - corridos\n3 - RnB\n4 - Sair\n ')
     if genero == "1":
