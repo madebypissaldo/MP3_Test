@@ -26,11 +26,11 @@ volume = 1.0
 # URLs de vídeos do YouTube
 musicas_por_genero = {
     '1': [('Doja - Central Cee', 'https://www.youtube.com/watch?v=_VuJA-VQRcY&pp=ygUQY2VudHJhbCBjZWUgZG9qYQ%3D%3D'),
-          ('Irish Drill - AC-130', 'https://www.youtube.com/watch?v=uyHUPhWYRsE&pp=ygUUSXJpc2ggRHJpbGwgLSBBQy0xMzA%3D')],
+        ('Irish Drill - AC-130', 'https://www.youtube.com/watch?v=uyHUPhWYRsE&pp=ygUUSXJpc2ggRHJpbGwgLSBBQy0xMzA%3D')],
     '2': [('Bizarrap Session - Peso Pluma', 'https://www.youtube.com/watch?v=v5_SYkFpFiY&pp=ygUdQml6YXJyYXAgU2Vzc2lvbiAtIFBlc28gUGx1bWE%3D'),
-          ('TQM - Fuerza Regida', 'https://www.youtube.com/watch?v=DzTNN5Zzpok&pp=ygUTVFFNIC0gRnVlcnphIFJlZ2lkYQ%3D%3D')],
+        ('TQM - Fuerza Regida', 'https://www.youtube.com/watch?v=DzTNN5Zzpok&pp=ygUTVFFNIC0gRnVlcnphIFJlZ2lkYQ%3D%3D')],
     '3': [('Ivy - Frank Ocean', 'https://www.youtube.com/watch?v=AE005nZeF-A&pp=ygURSXZ5IC0gRnJhbmsgT2NlYW4%3D'),
-          ('After Hours - The Weeknd', 'https://www.youtube.com/watch?v=ygTZZpVkmKg&pp=ygUYQWZ0ZXIgSG91cnMgLSBUaGUgV2Vla25k')]
+        ('After Hours - The Weeknd', 'https://www.youtube.com/watch?v=ygTZZpVkmKg&pp=ygUYQWZ0ZXIgSG91cnMgLSBUaGUgV2Vla25k')]
 }
 
 # Baixar áudio usando yt-dlp
@@ -120,6 +120,7 @@ def select_genero_3():
     music_menu = True
 
 def quit_program():
+    delete_temp_audio()
     pygame.quit()
     sys.exit()
 
