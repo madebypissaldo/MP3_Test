@@ -1,3 +1,1 @@
-this is a mp3 player project
-using it just to train my logic and problem solving skills
-every time I need to update it it may come with some bugs or errors
+para fazer o test-01 rodar, é necessário baixar https://www.gyan.dev/ffmpeg/builds/#release-builds a full build, e colocar o caminho do arquivo nas váriaveis do ambiente dentro do PATH, assim fazendo possivel o download da API  do youtube, e a execução do test-01. 
