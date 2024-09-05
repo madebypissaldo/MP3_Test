@@ -38,7 +38,6 @@ def download_youtube_audio(url):
     ydl_opts = {
         'format': 'bestaudio/best',
         'outtmpl': 'temp_audio',
-        'ffmpeg_location': r'C:\ffmpeg\bin',  # Caminho para o FFmpeg, se necessário
         'postprocessors': [{
             'key': 'FFmpegExtractAudio',
             'preferredcodec': 'mp3',
@@ -120,6 +119,7 @@ def select_genero_3():
     music_menu = True
 
 def quit_program():
+    delete_temp_audio()
     pygame.quit()
     sys.exit()
 
