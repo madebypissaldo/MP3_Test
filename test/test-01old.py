@@ -215,18 +215,9 @@ while True:
                     break
 
         elif music_menu:
-            # Checagem de eventos por teclas
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_SPACE and music_file:
                     play_pause_music()
-                elif event.key == pygame.K_UP:
-                    volume = min(1.0, volume + 0.1)
-                    pygame.mixer.music.set_volume(volume)
-                elif event.key == pygame.K_DOWN:
-                    volume = max(0.0, volume - 0.1)
-                    pygame.mixer.music.set_volume(volume)
-
-            # Verifica se algum botão foi clicado
             for button in buttons_music_menu[int(genero) - 1]:
                 if button.is_clicked(event):
                     break
